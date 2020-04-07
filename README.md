@@ -5,12 +5,15 @@
 Nesse projeto foi desenvolvido uma API para cadastrar lançamentos financeiros de entrada e saída, permitindo que esse lançamento seja associado a um usuário já cadastrado.
 ## Tecnologias
 Foram seguidos os princípios SOLID e REST, utilizando as seguintes tecnologias:
+
 * Spring Boot
     * Cache e Paginação
 * Spring Security
     * Autenticação com JWT
 * Spring Data JPA
-    * Banco de dados H2
+    * Banco de dados Postgres
+* Liquibase
+    * Versionamento do banco de dados
 
 ## Fazendo login e gerando um Token JWT
 Para obter o token de autorização é necessário entrar em **autenticacao-controller > POST > Try it out** e inserir o JSON: 
@@ -27,7 +30,7 @@ Para fazer uma consulta é necessário copiar o token gerado em **autenticacao-c
 
 ## Próximas funcionalidades
 Este projeto está em desenvolvimento e as próximas implementações serão:
-*  Liquibase
+
 * Testes Unitários
 
 :shipit:
