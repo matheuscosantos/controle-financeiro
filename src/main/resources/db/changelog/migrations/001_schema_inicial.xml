@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="matheuscosantos" dbms="postgresql">
+	
+        <createTable tableName="usuario">    
+        
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            
+            <column name="email" type="varchar(60)">
+            	<constraints nullable="false"/>
+            </column>
+            
+            <column name="nomes" type="varchar(70)">
+            	<constraints nullable="false"/>
+            </column>
+            
+            <column name="senha" type="varchar(255)">
+            	<constraints nullable="false"/>
+            </column>
+            
+        </createTable>
+        
+	</changeSet>
+	
+	<changeSet id="2" author="matheuscosantos" dbms="postgresql">
+                      
+        <createTable tableName="lancamento">
+        
+	        <column name="id" type="int" autoIncrement="true">
+	        	<constraints primaryKey="true" nullable="false"/>
+	        </column>
+	        
+	        <column name="titulo" type="varchar(70)">
+	        	<constraints nullable="false"/>
+	        </column> 
+	        
+	        <column name="descricao" type="varchar(255)"/>
+	        	
+	        <column name="dia" type="int">
+	        	<constraints nullable="false"/>
+	        </column>
+	        
+	        <column name="mes" type="int">
+	        	<constraints nullable="false"/>
+	        </column>
+	        
+	        <column name="ano" type="int">
+	        	<constraints nullable="false"/>
+	        </column>
+	        
+	        <column name="tipo" type="varchar(15)">
+	        	<constraints nullable="false"/>
+	        </column>
+	        
+	        <column name="valor" type="float">
+	        	<constraints nullable="false"/>
+	        </column>        
+        
+        	<column name="usuario_id" type="int">
+        		<constraints nullable="false" foreignKeyName="usuario_fkey" references="usuario(id)"/>
+        	</column>
+        	
+        </createTable>
+        
+        
+        <createTable tableName="perfil">
+        
+        	<column name="id" type="int" autoIncrement="true">
+        		<constraints primaryKey="true" nullable="false"/>
+        	</column>
+        	
+        	<column name="nomes" type="varchar(255)">
+        		<constraints nullable="false"/>
+        	</column>        	
+        	
+        </createTable>
+        
+        
+        <createTable tableName="usuario_perfis">
+        
+        	<column name="usuario_id" type="int">
+        		<constraints nullable="false" foreignKeyName="usuario_fkey" references="usuario(id)" />       	
+        	</column>
+        	
+        	<column name="perfis_id" type="int">
+        		<constraints nullable="false" foreignKeyName="perfil_fkey" references="perfil(id)"/>       	
+        	</column>
+        	
+        </createTable>
+        
+    </changeSet>	
+    
+    <changeSet id="3" author="matheuscosantos" dbms="postgresql">
+    
+	    <renameColumn catalogName="cat"
+	            columnDataType="int"
+	            newColumnName="nome"
+	            oldColumnName="nomes"
+	            tableName="usuario"/>
+    
+	</changeSet>
+	
+</databaseChangeLog>

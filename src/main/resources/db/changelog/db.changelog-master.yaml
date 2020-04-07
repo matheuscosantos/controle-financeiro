@@ -1,4 +1,8 @@
+url: jdbc:postgresql://localhost/bdcontrolefinanceiro
+username: postgres
+password: 123
+driver: org.postgresql.Driver
+
 databaseChangeLog:
-  - include:
-      file: migrations/001_schema_inicial.sql
-      relativeToChangelogFile: true
+- include:
+    file: db/changelog/migrations/001_schema_inicial.xml
